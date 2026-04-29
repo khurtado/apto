@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apartamentos LA</title>
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --blue: #2563eb;
+      --blue-dark: #1e40af;
+      --blue-soft: #dbeafe;
+      --green-soft: #dcfce7;
+      --green-text: #14532d;
+      --orange-soft: #ffedd5;
+      --orange-text: #7c2d12;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    a { color: inherit; }
+
+    .app {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 26px 20px;
+      color: white;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.32), transparent 30%),
+        linear-gradient(135deg, #0f172a 0%, #1d4ed8 62%, #38bdf8 100%);
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(30px, 9vw, 58px);
+      line-height: .96;
+      letter-spacing: -0.07em;
+    }
+
+    .hero p {
+      margin: 12px 0 0;
+      max-width: 680px;
+      color: rgba(255,255,255,.86);
+      font-size: 16px;
+    }
+
+    .quick-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 2px 4px;
+      margin: 8px 0 14px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .quick-nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      background: white;
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 13px;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, .06);
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .mini-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-card small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .mini-card strong {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head {
+      margin: 26px 0 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.05em;
+    }
+
+    .subhead {
+      margin: 26px 0 10px;
+      padding: 16px;
+      border-radius: 22px;
+      color: white;
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      box-shadow: var(--shadow);
+    }
+
+    .subhead h3 {
+      margin: 0 0 4px;
+      font-size: 24px;
+      letter-spacing: -0.05em;
+    }
+
+    .subhead p {
+      margin: 0;
+      color: rgba(255,255,255,.82);
+      font-size: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .compare-wrap {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .compare-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 820px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 13px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f8fafc;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: 11px;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    .rank { color: var(--blue); font-weight: 950; font-size: 18px; }
+
+    .apt-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .apt-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .apt-top {
+      padding: 18px;
+      background: linear-gradient(135deg, #ffffff, #eff6ff);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .apt-top h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.05em;
+    }
+
+    .zone { color: var(--muted); font-size: 14px; }
+
+    .score-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-top: 14px;
+      gap: 12px;
+    }
+
+    .score-line span:first-child { color: var(--muted); font-weight: 800; }
+    .score { color: var(--blue); font-weight: 950; font-size: 34px; letter-spacing: -0.08em; }
+
+    .apt-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .facts {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .facts li {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px dashed var(--line);
+      padding-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .facts li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .facts span:first-child { color: var(--muted); }
+    .facts span:last-child { text-align: right; font-weight: 850; }
+
+    .note {
+      border-radius: 17px;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .note strong { display: block; margin-bottom: 4px; }
+    .pros { background: var(--green-soft); color: var(--green-text); }
+    .cons { background: var(--orange-soft); color: var(--orange-text); }
+
+    .btn {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 17px;
+      padding: 12px 14px;
+      background: var(--blue);
+      color: white;
+      font-weight: 900;
+      margin-top: auto;
+    }
+
+    .video-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .video-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .video-title {
+      padding: 14px 14px 5px;
+      font-weight: 950;
+      letter-spacing: -0.03em;
+      font-size: 16px;
+    }
+
+    .video-subtitle {
+      padding: 0 14px 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .video-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
+      background: #0f172a;
+    }
+
+    .drive-folder {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .drive-folder iframe {
+      display: block;
+      width: 100%;
+      height: 520px;
+      border: 0;
+      background: white;
+    }
+
+    .questions { display: grid; gap: 10px; }
+
+    .question {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 14px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, .06);
+    }
+
+    .question strong { display: block; margin-bottom: 5px; }
+    .question p { margin: 0; color: var(--muted); }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 26px 0 10px;
+    }
+
+    @media (max-width: 860px) {
+      .app { padding: 12px; }
+      .summary, .apt-grid, .video-list { grid-template-columns: 1fr; }
+      .mini-card { padding: 14px; }
+      .hero { border-radius: 24px; }
+      .section-head { align-items: flex-end; }
+      .drive-folder iframe { height: 430px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <h1>Apartamentos LA</h1>
+      <p>Comparación móvil de opciones entre SpaceX y Downtown LA, con precios, pros/contras, ranking y videos incrustados.</p>
+    </section>
+
+    <nav class="quick-nav" aria-label="Navegación rápida">
+      <a href="#comparacion">Comparación</a>
+      <a href="#detalles">Detalles</a>
+      <a href="#videos-stanley">Stanley</a>
+      <a href="#videos-thea">THEA</a>
+      <a href="#videos-southhill">825 South Hill</a>
+      <a href="#drive">Drive</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+
+    <section class="summary">
+      <div class="mini-card"><small>Mejor ranking</small><strong>Stanley</strong></div>
+      <div class="mini-card"><small>Más cerca de SpaceX</small><strong>12–15 min</strong></div>
+      <div class="mini-card"><small>Mejor opción 2 cuartos</small><strong>825 South Hill</strong></div>
+    </section>
+
+    <section id="comparacion">
+      <div class="section-head">
+        <h2>Comparación rápida</h2>
+        <span class="tag">Mobile friendly</span>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Ranking</th>
+                <th>Apartamento</th>
+                <th>Zona</th>
+                <th>Renta</th>
+                <th>Parking</th>
+                <th>Fees</th>
+                <th>Total estimado</th>
+                <th>SpaceX</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rank">9</td>
+                <td><strong>Stanley on Market St</strong></td>
+                <td>Entre SpaceX y Downtown</td>
+                <td>$3,650 — PH16</td>
+                <td>Incluido</td>
+                <td>Utilidades ~$150</td>
+                <td><strong>~$3,800</strong></td>
+                <td>12–15 min</td>
+              </tr>
+              <tr>
+                <td class="rank">8.5</td>
+                <td><strong>825 South Hill</strong></td>
+                <td>Downtown LA</td>
+                <td>$3,272 1 cuarto / $3,514 townhome 2 cuartos</td>
+                <td>$250; visitante $25–$40</td>
+                <td>Utilidades $150–$200</td>
+                <td><strong>~$3,672–$3,964</strong></td>
+                <td>20–40 min</td>
+              </tr>
+              <tr>
+                <td class="rank">8</td>
+                <td><strong>THEA</strong></td>
+                <td>Downtown LA</td>
+                <td>$4,016; posible ~$3,200 neto si aplican 3 meses gratis</td>
+                <td>$250</td>
+                <td>Utilidades $200–$250</td>
+                <td><strong>~$3,650–$4,516</strong></td>
+                <td>20–40 min</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="detalles">
+      <div class="section-head">
+        <h2>Detalles</h2>
+        <span class="tag">Ranking personal</span>
+      </div>
+
+      <div class="apt-grid">
+        <article class="apt-card">
+          <div class="apt-top">
+            <h3>Stanley on Market St</h3>
+            <div class="zone">Entre SpaceX y Downtown</div>
+            <div class="score-line"><span>Ranking</span><span class="score">9</span></div>
+          </div>
+          <div class="apt-body">
+            <ul class="facts">
+              <li><span>Renta</span><span>$3,650 PH16</span></li>
+              <li><span>Parking</span><span>Incluido</span></li>
+              <li><span>Fees</span><span>~$150</span></li>
+              <li><span>Total</span><span>~$3,800</span></li>
+              <li><span>SpaceX</span><span>12–15 min</span></li>
+            </ul>
+            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande.</div>
+            <div class="note cons"><strong>Contras</strong>Menos amenidades que THEA y South Hill, aunque tiene bonitas.</div>
+            <a class="btn" href="#videos-stanley">Ver videos de Stanley</a>
+          </div>
+        </article>
+
+        <article class="apt-card">
+          <div class="apt-top">
+            <h3>825 South Hill</h3>
+            <div class="zone">Downtown LA</div>
+            <div class="score-line"><span>Ranking</span><span class="score">8.5</span></div>
+          </div>
+          <div class="apt-body">
+            <ul class="facts">
+              <li><span>Renta</span><span>$3,272 / $3,514</span></li>
+              <li><span>Parking</span><span>$250</span></li>
+              <li><span>Fees</span><span>$150–$200</span></li>
+              <li><span>Total</span><span>~$3,672–$3,964</span></li>
+              <li><span>SpaceX</span><span>20–40 min</span></li>
+            </ul>
+            <div class="note pros"><strong>Pros</strong>1 cuarto precioso con bonita vista. Townhome de 2 cuartos con sala de lujo y cocina top.</div>
+            <div class="note cons"><strong>Contras</strong>No tiene balcón.</div>
+            <a class="btn" href="#videos-southhill">Ver videos de 825 South Hill</a>
+          </div>
+        </article>
+
+        <article class="apt-card">
+          <div class="apt-top">
+            <h3>THEA</h3>
+            <div class="zone">Downtown LA</div>
+            <div class="score-line"><span>Ranking</span><span class="score">8</span></div>
+          </div>
+          <div class="apt-body">
+            <ul class="facts">
+              <li><span>Renta</span><span>$4,016 / posible ~$3,200 neto</span></li>
+              <li><span>Parking</span><span>$250</span></li>
+              <li><span>Fees</span><span>$200–$250</span></li>
+              <li><span>Total</span><span>~$3,650–$4,516</span></li>
+              <li><span>SpaceX</span><span>20–40 min</span></li>
+            </ul>
+            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande, 1 baño y medio.</div>
+            <div class="note cons"><strong>Contras</strong>No tiene balcón. Confirmar si realmente aplican 3 meses gratis.</div>
+            <a class="btn" href="#videos-thea">Ver videos de THEA</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="videos">
+      <div class="section-head">
+        <h2>Videos incrustados</h2>
+        <span class="tag">Google Drive</span>
+      </div>
+
+      <div id="videos-stanley" class="subhead">
+        <h3>Stanley on Market St</h3>
+        <p>Videos del apartamento y amenidades.</p>
+      </div>
+      <div class="video-list">
+        <article class="video-card">
+          <div class="video-title">Stanley — 1 cuarto modelo</div>
+          <div class="video-subtitle">Modelo de 1 cuarto</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/12I3pxqmcWK9SrhBk-2aYe4GCfCcpq4ul/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">Stanley — 1 cuarto real</div>
+          <div class="video-subtitle">Unidad real de 1 cuarto</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1dUSPouTGmN8Mw9qOx4nRkSZFCbnWSsKQ/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">Stanley — 2 cuartos</div>
+          <div class="video-subtitle">Opción de 2 cuartos</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1FnZUFlaywRmlj-_jcQZ5VVTcpdqGEnEv/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">Stanley — Cine</div>
+          <div class="video-subtitle">Amenidad de cine</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1YtsoLfeaTkikZdw_YswlCdZzoDw3WVIR/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">Stanley — Piscina</div>
+          <div class="video-subtitle">Área de piscina</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1tgw0SIqBf6v2oGIrF_fjx4I0vjbiSzgD/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">Stanley — Gym</div>
+          <div class="video-subtitle">Gimnasio</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1wu_WuS5BxvEQtZcOmA8_1K56TDU0WBuS/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">Stanley — Club house</div>
+          <div class="video-subtitle">Área social / club house</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/16xIWHcIwTX2ccHnUltHe8_3zhijoGZn1/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+      </div>
+
+      <div id="videos-thea" class="subhead">
+        <h3>THEA</h3>
+        <p>Videos del apartamento y amenidades.</p>
+      </div>
+      <div class="video-list">
+        <article class="video-card">
+          <div class="video-title">THEA — 1 cuarto, posible gabinetes blancos</div>
+          <div class="video-subtitle">Otro color; confirmar si la unidad tiene gabinetes blancos.</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1E3TsrKM_RZjSZDn35Uv0H35PZyGk-AWb/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">THEA — 1 cuarto modelo</div>
+          <div class="video-subtitle">Modelo de 1 cuarto</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/19iyXYMDOoQ8PhhFf8mh3QgRq1MMoIDzq/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">THEA — Gym</div>
+          <div class="video-subtitle">Gimnasio</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1obftIJugGNpUGckzNRHv7hOemf6tYQK2/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">THEA — Parrillas</div>
+          <div class="video-subtitle">Área de parrillas</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1WGhO3YHo1nMSZbAN7NdmnbcQD4SO09dE/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">THEA — Piscina</div>
+          <div class="video-subtitle">Área de piscina</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1HvJS2z77yFCoX7uZLNrPAMqhJy0vEi4O/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+      </div>
+
+      <div id="videos-southhill" class="subhead">
+        <h3>825 South Hill</h3>
+        <p>Videos del apartamento, townhome y amenidades.</p>
+      </div>
+      <div class="video-list">
+        <article class="video-card">
+          <div class="video-title">825 South Hill — 1 cuarto</div>
+          <div class="video-subtitle">Apartamento de 1 cuarto</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1FXEt9hngGoM__LYf4ZVwJ9U6Jl4Tulkm/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">825 South Hill — 2 cuartos</div>
+          <div class="video-subtitle">Townhome / unidad de 2 cuartos</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/18u37SHkZ2KuFTRfYnbE8p5I9YjgQVwYY/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">825 South Hill — Club house</div>
+          <div class="video-subtitle">Área social / club house</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1H_gxq5jKKz6HA-8avZdA4LgEmqzZyNUC/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">825 South Hill — Piscina</div>
+          <div class="video-subtitle">Área de piscina</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1kPkt1PHi4vB9QhUA5uoUax-W51m3qW25/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">825 South Hill — Gym</div>
+          <div class="video-subtitle">Gimnasio</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1whzW3GPotJpcqgQSOJW6-Vf_Fj4MOBZ9/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+        <article class="video-card">
+          <div class="video-title">825 South Hill — Lobby</div>
+          <div class="video-subtitle">Entrada / lobby</div>
+          <iframe class="video-frame" src="https://drive.google.com/file/d/1ttLF4DUDzX3Oq6PTbip8AD4iEGILKRFv/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        </article>
+      </div>
+    </section>
+
+    <section id="drive">
+      <div class="section-head">
+        <h2>Carpeta completa de Google Drive</h2>
+        <span class="tag">Fotos + videos</span>
+      </div>
+      <div class="drive-folder">
+        <iframe src="https://drive.google.com/embeddedfolderview?id=1-8UdDcJ_l_j0xv7p0t2eROue1oDC8JVT#grid"></iframe>
+      </div>
+    </section>
+
+    <section id="preguntas">
+      <div class="section-head">
+        <h2>Preguntas pendientes</h2>
+        <span class="tag">Antes de aplicar</span>
+      </div>
+      <div class="questions">
+        <div class="question"><strong>THEA</strong><p>Confirmar si los 3 meses gratis aplican al apartamento específico y cómo calculan la renta neta efectiva.</p></div>
+        <div class="question"><strong>825 South Hill</strong><p>Confirmar disponibilidad real del 1 cuarto y del townhome, parking de visitantes y total mensual con fees.</p></div>
+        <div class="question"><strong>Stanley</strong><p>Confirmar total mensual final, depósito, requisitos de crédito e ingreso, y si el parking incluido es garantizado.</p></div>
+      </div>
+    </section>
+
+    <p class="footer">Actualizado para comparar opciones de vivienda en Los Ángeles.</p>
+  </main>
+</body>
+</html>
