@@ -18,6 +18,8 @@
       --green-text: #14532d;
       --orange-soft: #ffedd5;
       --orange-text: #7c2d12;
+      --purple-soft: #f3e8ff;
+      --purple-text: #581c87;
       --red-soft: #fee2e2;
       --red-text: #7f1d1d;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
@@ -34,8 +36,6 @@
       line-height: 1.45;
     }
 
-    a { color: inherit; }
-
     .app {
       max-width: 1120px;
       margin: 0 auto;
@@ -43,8 +43,6 @@
     }
 
     .hero {
-      position: relative;
-      overflow: hidden;
       border-radius: 28px;
       padding: 28px 20px;
       color: white;
@@ -63,7 +61,7 @@
 
     .hero p {
       margin: 12px 0 0;
-      max-width: 760px;
+      max-width: 780px;
       color: rgba(255,255,255,.86);
       font-size: 16px;
     }
@@ -113,7 +111,7 @@
     }
 
     .mini-card strong {
-      font-size: 21px;
+      font-size: 20px;
       letter-spacing: -0.04em;
     }
 
@@ -131,30 +129,8 @@
       letter-spacing: -0.05em;
     }
 
-    .subhead {
-      margin: 26px 0 10px;
-      padding: 16px;
-      border-radius: 22px;
-      color: white;
-      background: linear-gradient(135deg, #0f172a, #1d4ed8);
-      box-shadow: var(--shadow);
-    }
-
-    .subhead h3 {
-      margin: 0 0 4px;
-      font-size: 24px;
-      letter-spacing: -0.05em;
-    }
-
-    .subhead p {
-      margin: 0;
-      color: rgba(255,255,255,.82);
-      font-size: 14px;
-    }
-
     .tag {
       display: inline-flex;
-      align-items: center;
       white-space: nowrap;
       border-radius: 999px;
       padding: 7px 10px;
@@ -180,7 +156,7 @@
     table {
       border-collapse: collapse;
       width: 100%;
-      min-width: 960px;
+      min-width: 1150px;
     }
 
     th, td {
@@ -202,13 +178,13 @@
     tr:last-child td { border-bottom: 0; }
     .rank { color: var(--blue); font-weight: 950; font-size: 18px; }
 
-    .apt-grid {
+    .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
 
-    .apt-card {
+    .card {
       background: white;
       border: 1px solid var(--line);
       border-radius: 26px;
@@ -218,13 +194,13 @@
       flex-direction: column;
     }
 
-    .apt-top {
+    .card-top {
       padding: 18px;
       background: linear-gradient(135deg, #ffffff, #eff6ff);
       border-bottom: 1px solid var(--line);
     }
 
-    .apt-top h3 {
+    .card-top h3 {
       margin: 0 0 6px;
       font-size: 22px;
       letter-spacing: -0.05em;
@@ -243,7 +219,7 @@
     .score-line span:first-child { color: var(--muted); font-weight: 800; }
     .score { color: var(--blue); font-weight: 950; font-size: 34px; letter-spacing: -0.08em; }
 
-    .apt-body {
+    .card-body {
       padding: 16px;
       display: flex;
       flex-direction: column;
@@ -251,26 +227,42 @@
       flex: 1;
     }
 
-    .facts {
+    .field-group {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .field-group-title {
+      padding: 10px 12px;
+      font-weight: 950;
+      font-size: 13px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: #334155;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fields {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: grid;
-      gap: 8px;
     }
 
-    .facts li {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
+    .fields li {
+      display: grid;
+      grid-template-columns: 44% 56%;
+      gap: 10px;
+      padding: 10px 12px;
       border-bottom: 1px dashed var(--line);
-      padding-bottom: 8px;
       font-size: 14px;
     }
 
-    .facts li:last-child { border-bottom: 0; padding-bottom: 0; }
-    .facts span:first-child { color: var(--muted); }
-    .facts span:last-child { text-align: right; font-weight: 850; }
+    .fields li:last-child { border-bottom: 0; }
+    .fields span:first-child { color: var(--muted); font-weight: 700; }
+    .fields span:last-child { font-weight: 850; }
 
     .note {
       border-radius: 17px;
@@ -281,6 +273,7 @@
     .note strong { display: block; margin-bottom: 4px; }
     .pros { background: var(--green-soft); color: var(--green-text); }
     .cons { background: var(--orange-soft); color: var(--orange-text); }
+    .deal { background: var(--purple-soft); color: var(--purple-text); }
     .warn { background: var(--red-soft); color: var(--red-text); }
 
     .btn {
@@ -294,6 +287,23 @@
       font-weight: 900;
       margin-top: auto;
     }
+
+    .subhead {
+      margin: 26px 0 10px;
+      padding: 16px;
+      border-radius: 22px;
+      color: white;
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      box-shadow: var(--shadow);
+    }
+
+    .subhead h3 {
+      margin: 0 0 4px;
+      font-size: 24px;
+      letter-spacing: -0.05em;
+    }
+
+    .subhead p { margin: 0; color: rgba(255,255,255,.82); font-size: 14px; }
 
     .video-list {
       display: grid;
@@ -352,11 +362,10 @@
 
     @media (max-width: 940px) {
       .app { padding: 12px; }
-      .summary, .apt-grid, .video-list { grid-template-columns: 1fr; }
-      .mini-card { padding: 14px; }
+      .summary, .cards, .video-list { grid-template-columns: 1fr; }
       .hero { border-radius: 24px; }
+      .fields li { grid-template-columns: 42% 58%; }
       .section-head { align-items: flex-end; }
-      .mini-card strong { font-size: 20px; }
     }
   </style>
 </head>
@@ -364,7 +373,7 @@
   <main class="app">
     <section class="hero">
       <h1>Apartamentos LA</h1>
-      <p>Comparación móvil actualizada con renta, descuentos, aplicación, depósitos, totales, pros/contras, ranking y videos incrustados.</p>
+      <p>Comparación detallada con campos separados: renta, total normal, total con descuentos, aplicación, depósito, oferta, fees, pros/contras y videos.</p>
     </section>
 
     <nav class="quick-nav" aria-label="Navegación rápida">
@@ -377,16 +386,16 @@
     </nav>
 
     <section class="summary">
-      <div class="mini-card"><small>Mejor ranking</small><strong>Stanley</strong></div>
-      <div class="mini-card"><small>Más cerca de SpaceX</small><strong>12–15 min</strong></div>
-      <div class="mini-card"><small>Más estilo hotel</small><strong>THEA</strong></div>
-      <div class="mini-card"><small>Mejor 2 cuartos</small><strong>825 South Hill</strong></div>
+      <div class="mini-card"><small>Mejor ranking</small><strong>Stanley · 9</strong></div>
+      <div class="mini-card"><small>Menor total con descuento</small><strong>825 · $3,667</strong></div>
+      <div class="mini-card"><small>Más cerca de SpaceX</small><strong>Stanley · 12–15 min</strong></div>
+      <div class="mini-card"><small>Más amenidades</small><strong>THEA</strong></div>
     </section>
 
     <section id="comparacion">
       <div class="section-head">
-        <h2>Comparación rápida</h2>
-        <span class="tag">Totales estimados</span>
+        <h2>Comparación con campos separados</h2>
+        <span class="tag">Scroll lateral en móvil</span>
       </div>
       <div class="compare-wrap">
         <div class="compare-scroll">
@@ -394,52 +403,68 @@
             <thead>
               <tr>
                 <th>Ranking</th>
-                <th>Apartamento</th>
+                <th>Nombre</th>
                 <th>Zona</th>
-                <th>Renta base</th>
-                <th>Parking / fees</th>
-                <th>Oferta</th>
-                <th>Total mensual</th>
-                <th>Total con descuento</th>
-                <th>Aplicación / depósito</th>
-                <th>SpaceX</th>
+                <th>Unidad</th>
+                <th>Renta</th>
+                <th>Parking</th>
+                <th>Otros fees</th>
+                <th>Total renta + servicios + parking</th>
+                <th>Total renta con descuentos</th>
+                <th>Ofertas</th>
+                <th>Aplicación</th>
+                <th>Depósito / holding</th>
+                <th>Lease</th>
+                <th>Distancia SpaceX</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="rank">9</td>
-                <td><strong>Stanley on Market St</strong><br>PH16</td>
+                <td><strong>Stanley on Market St</strong><br>Contacto: Eric</td>
                 <td>Entre SpaceX y Downtown</td>
+                <td>PH16</td>
                 <td>$3,650</td>
-                <td>Parking incluido<br>Utilidades $150<br>Internet $60</td>
+                <td>Incluido</td>
+                <td>Utilidades $150<br>Internet $60</td>
+                <td><strong>$3,860</strong><br>$3,650 + $150 + $60</td>
+                <td><strong>$3,860</strong><br>Sin descuento</td>
                 <td>Ninguna</td>
-                <td><strong>$3,860</strong></td>
-                <td><strong>$3,860</strong></td>
-                <td>$50 aplicación<br>$500 o $750 depósito<br>13 meses</td>
+                <td>$50</td>
+                <td>$500 o $750 depósito</td>
+                <td>13 meses</td>
                 <td>12–15 min</td>
               </tr>
               <tr>
-                <td class="rank">8.5</td>
-                <td><strong>825 South Hill</strong><br>#3210 / #521</td>
+                <td class="rank">8</td>
+                <td><strong>THEA</strong></td>
                 <td>Downtown LA</td>
-                <td>$3,272 junior 2 cuartos<br>$3,514 townhome 2 cuartos</td>
-                <td>Parking $250<br>Utilidades $150–$200<br>Visitantes $25–$40</td>
-                <td>$1,500 descuento aplicado al tercer mes</td>
-                <td><strong>$3,782</strong> 1 piso<br><strong>$4,024</strong> 2 pisos</td>
-                <td><strong>$3,667</strong> 1 piso<br><strong>$3,909</strong> 2 pisos</td>
-                <td>$50 por persona<br>$500 holding deposit<br>1 mes renta depósito</td>
+                <td>Apto #3801</td>
+                <td>$4,005 / $4,011</td>
+                <td>$250</td>
+                <td>Servicios $200–$250<br>Internet $60<br>Invitados $20–$35/día</td>
+                <td><strong>$4,571</strong><br>Renta + servicios + internet + parking<br>Meses 3, 6, 9: aprox. $500</td>
+                <td><strong>~$3,768</strong><br>Promedio neto con descuento</td>
+                <td>12 semanas gratis aplicadas al mes 3, 6 y 9</td>
+                <td>$50 por persona</td>
+                <td>$500 holding deposit<br>Security: 1 mes</td>
+                <td>15 meses requerido</td>
                 <td>20–40 min</td>
               </tr>
               <tr>
-                <td class="rank">8</td>
-                <td><strong>THEA</strong><br>Apto #3801</td>
+                <td class="rank">8.5</td>
+                <td><strong>825 South Hill</strong></td>
                 <td>Downtown LA</td>
-                <td>$4,005–$4,011</td>
-                <td>Parking $250<br>Servicios $250 aprox.<br>Internet $60<br>Invitados $20–$35/día</td>
-                <td>12 semanas gratis, aplicadas al mes 3, 6 y 9. Requiere 15 meses.</td>
-                <td><strong>$4,571</strong><br>Meses 3, 6 y 9: aprox. $500</td>
-                <td><strong>~$3,768</strong> promedio neto</td>
-                <td>$50 por persona<br>$500 holding deposit<br>Security: 1 mes</td>
+                <td>Junior 2 cuartos #3210<br>Townhome 2 cuartos #521</td>
+                <td>$3,272 junior 2 cuartos<br>$3,514 townhome 2 cuartos</td>
+                <td>$250<br>Invitados $25–$40</td>
+                <td>Utilidades $150–$200</td>
+                <td><strong>$3,782</strong> junior 2 cuartos<br><strong>$4,024</strong> townhome 2 pisos</td>
+                <td><strong>$3,667</strong> junior 2 cuartos<br><strong>$3,909</strong> townhome 2 pisos</td>
+                <td>$1,500 descuento aplicado al tercer mes</td>
+                <td>$50 por persona</td>
+                <td>$500 holding deposit<br>1 mes de renta de depósito</td>
+                <td>No especificado</td>
                 <td>20–40 min</td>
               </tr>
             </tbody>
@@ -450,87 +475,115 @@
 
     <section id="detalles">
       <div class="section-head">
-        <h2>Detalles</h2>
-        <span class="tag">Ranking personal</span>
+        <h2>Tarjetas detalladas</h2>
+        <span class="tag">Campos visibles</span>
       </div>
 
-      <div class="apt-grid">
-        <article class="apt-card">
-          <div class="apt-top">
+      <div class="cards">
+        <article class="card">
+          <div class="card-top">
             <h3>Stanley on Market St</h3>
-            <div class="zone">Entre SpaceX y Downtown · PH16</div>
+            <div class="zone">Entre SpaceX y Downtown · PH16 · Contacto: Eric</div>
             <div class="score-line"><span>Ranking</span><span class="score">9</span></div>
           </div>
-          <div class="apt-body">
-            <ul class="facts">
-              <li><span>Renta</span><span>$3,650</span></li>
-              <li><span>Parking</span><span>Incluido</span></li>
-              <li><span>Utilidades</span><span>$150</span></li>
-              <li><span>Internet</span><span>$60</span></li>
-              <li><span>Total</span><span>$3,860</span></li>
-              <li><span>Oferta</span><span>Ninguna</span></li>
-              <li><span>Aplicación</span><span>$50</span></li>
-              <li><span>Depósito</span><span>$500 o $750</span></li>
-              <li><span>Lease</span><span>13 meses</span></li>
-              <li><span>Contacto</span><span>Eric</span></li>
-              <li><span>SpaceX</span><span>12–15 min</span></li>
-            </ul>
-            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande. Bien localizado entre SpaceX y Downtown.</div>
-            <div class="note cons"><strong>Contras</strong>Menos amenidades que THEA y South Hill, aunque tiene bonitas.</div>
-            <a class="btn" href="#videos-stanley">Ver videos de Stanley</a>
+          <div class="card-body">
+            <div class="field-group">
+              <div class="field-group-title">Costos mensuales</div>
+              <ul class="fields">
+                <li><span>Renta</span><span>$3,650</span></li>
+                <li><span>Parking</span><span>Incluido</span></li>
+                <li><span>Utilidades</span><span>$150</span></li>
+                <li><span>Internet</span><span>$60</span></li>
+                <li><span>Total renta y utilidades</span><span>$3,860</span></li>
+                <li><span>Total con descuentos</span><span>$3,860</span></li>
+              </ul>
+            </div>
+            <div class="field-group">
+              <div class="field-group-title">Aplicación y lease</div>
+              <ul class="fields">
+                <li><span>Oferta</span><span>Ninguna</span></li>
+                <li><span>Aplicación</span><span>$50</span></li>
+                <li><span>Depósito</span><span>$500 o $750</span></li>
+                <li><span>Contrato</span><span>13 meses</span></li>
+                <li><span>Distancia a SpaceX</span><span>12–15 minutos</span></li>
+              </ul>
+            </div>
+            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande. Bien localizado.</div>
+            <div class="note cons"><strong>Contras</strong>Menos amenidades que THEA y South Hill, pero tiene bonitas.</div>
+            <a class="btn" href="#videos-stanley">Ver videos</a>
           </div>
         </article>
 
-        <article class="apt-card">
-          <div class="apt-top">
-            <h3>825 South Hill</h3>
-            <div class="zone">Downtown LA · #3210 / #521</div>
-            <div class="score-line"><span>Ranking</span><span class="score">8.5</span></div>
-          </div>
-          <div class="apt-body">
-            <ul class="facts">
-              <li><span>Renta</span><span>$3,272 / $3,514</span></li>
-              <li><span>Opciones</span><span>Junior 2 cuartos / Townhome 2 pisos</span></li>
-              <li><span>Parking</span><span>$250</span></li>
-              <li><span>Utilidades</span><span>$150–$200</span></li>
-              <li><span>Total</span><span>$3,782 / $4,024</span></li>
-              <li><span>Con descuento</span><span>$3,667 / $3,909</span></li>
-              <li><span>Oferta</span><span>$1,500 al tercer mes</span></li>
-              <li><span>Aplicación</span><span>$50 por persona</span></li>
-              <li><span>Holding</span><span>$500</span></li>
-              <li><span>Depósito</span><span>1 mes renta</span></li>
-              <li><span>SpaceX</span><span>20–40 min</span></li>
-            </ul>
-            <div class="note pros"><strong>Pros</strong>Junior 2 cuartos precioso con bonita vista. El de dos pisos tiene más espacio, sala de lujo y cocina top.</div>
-            <div class="note cons"><strong>Contras</strong>Cuartos pequeños. En el de dos pisos hay escaleras y no hay vista desde los cuartos.</div>
-            <a class="btn" href="#videos-southhill">Ver videos de 825 South Hill</a>
-          </div>
-        </article>
-
-        <article class="apt-card">
-          <div class="apt-top">
+        <article class="card">
+          <div class="card-top">
             <h3>THEA</h3>
             <div class="zone">Downtown LA · Apto #3801</div>
             <div class="score-line"><span>Ranking</span><span class="score">8</span></div>
           </div>
-          <div class="apt-body">
-            <ul class="facts">
-              <li><span>Renta</span><span>$4,005–$4,011</span></li>
-              <li><span>Parking</span><span>$250</span></li>
-              <li><span>Servicios</span><span>$250 aprox.</span></li>
-              <li><span>Internet</span><span>$60</span></li>
-              <li><span>Total normal</span><span>$4,571</span></li>
-              <li><span>Total neto</span><span>~$3,768</span></li>
-              <li><span>Oferta</span><span>12 semanas gratis</span></li>
-              <li><span>Aplicación</span><span>$50 por persona</span></li>
-              <li><span>Holding</span><span>$500</span></li>
-              <li><span>Security</span><span>1 mes</span></li>
-              <li><span>Lease</span><span>15 meses</span></li>
-              <li><span>SpaceX</span><span>20–40 min</span></li>
-            </ul>
+          <div class="card-body">
+            <div class="field-group">
+              <div class="field-group-title">Costos mensuales</div>
+              <ul class="fields">
+                <li><span>Renta</span><span>$4,005 / $4,011</span></li>
+                <li><span>Parking</span><span>$250</span></li>
+                <li><span>Servicios</span><span>$200–$250</span></li>
+                <li><span>Internet</span><span>$60</span></li>
+                <li><span>Total renta + servicios + parking</span><span>$4,571</span></li>
+                <li><span>Meses gratis</span><span>Meses 3, 6 y 9: aprox. $500</span></li>
+                <li><span>Total con descuentos</span><span>~$3,768 promedio neto</span></li>
+              </ul>
+            </div>
+            <div class="field-group">
+              <div class="field-group-title">Aplicación y lease</div>
+              <ul class="fields">
+                <li><span>Oferta</span><span>12 semanas gratis</span></li>
+                <li><span>Cómo aplica</span><span>Al mes 3, 6 y 9</span></li>
+                <li><span>Aplicación</span><span>$50 por persona</span></li>
+                <li><span>Holding deposit</span><span>$500</span></li>
+                <li><span>Security deposit</span><span>1 mes</span></li>
+                <li><span>Contrato</span><span>15 meses requerido</span></li>
+                <li><span>Invitados</span><span>$20–$35 por día</span></li>
+                <li><span>Distancia a SpaceX</span><span>20–40 minutos</span></li>
+              </ul>
+            </div>
             <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande, 1 baño y medio. Amenidades bellas, parece hotel. Gabinetes blancos.</div>
-            <div class="note cons"><strong>Contras</strong>No tiene balcón. La oferta se aplica en meses específicos: 3, 6 y 9.</div>
-            <a class="btn" href="#videos-thea">Ver videos de THEA</a>
+            <div class="note cons"><strong>Contras</strong>No tiene balcón. El descuento no baja todos los meses por igual; se aplica en meses específicos.</div>
+            <a class="btn" href="#videos-thea">Ver videos</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <h3>825 South Hill</h3>
+            <div class="zone">Downtown LA · #3210 / #521</div>
+            <div class="score-line"><span>Ranking</span><span class="score">8.5</span></div>
+          </div>
+          <div class="card-body">
+            <div class="field-group">
+              <div class="field-group-title">Costos mensuales</div>
+              <ul class="fields">
+                <li><span>Renta</span><span>$3,272 junior 2 cuartos<br>$3,514 townhome 2 cuartos</span></li>
+                <li><span>Parking</span><span>$250</span></li>
+                <li><span>Utilidades</span><span>$150–$200</span></li>
+                <li><span>Invitados</span><span>$25–$40</span></li>
+                <li><span>Total renta + servicios + parking</span><span>$3,782 junior 2 cuartos<br>$4,024 townhome 2 pisos</span></li>
+                <li><span>Total con descuentos</span><span>$3,667 junior 2 cuartos<br>$3,909 townhome 2 pisos</span></li>
+              </ul>
+            </div>
+            <div class="field-group">
+              <div class="field-group-title">Aplicación y lease</div>
+              <ul class="fields">
+                <li><span>Oferta</span><span>$1,500 descuento</span></li>
+                <li><span>Cómo aplica</span><span>Al tercer mes</span></li>
+                <li><span>Aplicación</span><span>$50 por persona</span></li>
+                <li><span>Holding deposit</span><span>$500</span></li>
+                <li><span>Security deposit</span><span>1 mes de renta</span></li>
+                <li><span>Distancia a SpaceX</span><span>20–40 minutos</span></li>
+              </ul>
+            </div>
+            <div class="note pros"><strong>Pros</strong>Junior 2 cuartos precioso con bonita vista. El de dos pisos tiene más espacio, sala de lujo y cocina top.</div>
+            <div class="note cons"><strong>Contras</strong>Cuartos pequeños. En el de dos pisos hay escaleras y no hay vista desde los cuartos.</div>
+            <a class="btn" href="#videos-southhill">Ver videos</a>
           </div>
         </article>
       </div>
@@ -547,41 +600,13 @@
         <p>Videos del apartamento y amenidades.</p>
       </div>
       <div class="video-list">
-        <article class="video-card">
-          <div class="video-title">Stanley — 1 cuarto real</div>
-          <div class="video-subtitle">Unidad real de 1 cuarto</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/12I3pxqmcWK9SrhBk-2aYe4GCfCcpq4ul/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">Stanley — 1 cuarto real, baño</div>
-          <div class="video-subtitle">Baño de la unidad real</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1dUSPouTGmN8Mw9qOx4nRkSZFCbnWSsKQ/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">Stanley — 2 cuartos</div>
-          <div class="video-subtitle">Opción de 2 cuartos</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1FnZUFlaywRmlj-_jcQZ5VVTcpdqGEnEv/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">Stanley — Cine</div>
-          <div class="video-subtitle">Amenidad de cine</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1YtsoLfeaTkikZdw_YswlCdZzoDw3WVIR/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">Stanley — Piscina</div>
-          <div class="video-subtitle">Área de piscina</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1tgw0SIqBf6v2oGIrF_fjx4I0vjbiSzgD/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">Stanley — Gym</div>
-          <div class="video-subtitle">Gimnasio</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1wu_WuS5BxvEQtZcOmA8_1K56TDU0WBuS/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">Stanley — Club house</div>
-          <div class="video-subtitle">Área social / club house</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/16xIWHcIwTX2ccHnUltHe8_3zhijoGZn1/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
+        <article class="video-card"><div class="video-title">Stanley — 1 cuarto real</div><div class="video-subtitle">Unidad real de 1 cuarto</div><iframe class="video-frame" src="https://drive.google.com/file/d/12I3pxqmcWK9SrhBk-2aYe4GCfCcpq4ul/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">Stanley — 1 cuarto real, baño</div><div class="video-subtitle">Baño de la unidad real</div><iframe class="video-frame" src="https://drive.google.com/file/d/1dUSPouTGmN8Mw9qOx4nRkSZFCbnWSsKQ/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">Stanley — 2 cuartos</div><div class="video-subtitle">Opción de 2 cuartos</div><iframe class="video-frame" src="https://drive.google.com/file/d/1FnZUFlaywRmlj-_jcQZ5VVTcpdqGEnEv/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">Stanley — Cine</div><div class="video-subtitle">Amenidad de cine</div><iframe class="video-frame" src="https://drive.google.com/file/d/1YtsoLfeaTkikZdw_YswlCdZzoDw3WVIR/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">Stanley — Piscina</div><div class="video-subtitle">Área de piscina</div><iframe class="video-frame" src="https://drive.google.com/file/d/1tgw0SIqBf6v2oGIrF_fjx4I0vjbiSzgD/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">Stanley — Gym</div><div class="video-subtitle">Gimnasio</div><iframe class="video-frame" src="https://drive.google.com/file/d/1wu_WuS5BxvEQtZcOmA8_1K56TDU0WBuS/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">Stanley — Club house</div><div class="video-subtitle">Área social / club house</div><iframe class="video-frame" src="https://drive.google.com/file/d/16xIWHcIwTX2ccHnUltHe8_3zhijoGZn1/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
       </div>
 
       <div id="videos-thea" class="subhead">
@@ -589,31 +614,11 @@
         <p>Videos del apartamento y amenidades.</p>
       </div>
       <div class="video-list">
-        <article class="video-card">
-          <div class="video-title">THEA — 1 cuarto, otro color</div>
-          <div class="video-subtitle">Puede que la unidad tenga gabinetes blancos.</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1E3TsrKM_RZjSZDn35Uv0H35PZyGk-AWb/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">THEA — 1 cuarto modelo</div>
-          <div class="video-subtitle">Modelo de 1 cuarto</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/19iyXYMDOoQ8PhhFf8mh3QgRq1MMoIDzq/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">THEA — Gym</div>
-          <div class="video-subtitle">Gimnasio</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1obftIJugGNpUGckzNRHv7hOemf6tYQK2/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">THEA — Parrillas</div>
-          <div class="video-subtitle">Área de parrillas</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1WGhO3YHo1nMSZbAN7NdmnbcQD4SO09dE/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">THEA — Piscina</div>
-          <div class="video-subtitle">Área de piscina</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1HvJS2z77yFCoX7uZLNrPAMqhJy0vEi4O/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
+        <article class="video-card"><div class="video-title">THEA — 1 cuarto, otro color</div><div class="video-subtitle">Puede que la unidad tenga gabinetes blancos.</div><iframe class="video-frame" src="https://drive.google.com/file/d/1E3TsrKM_RZjSZDn35Uv0H35PZyGk-AWb/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">THEA — 1 cuarto modelo</div><div class="video-subtitle">Modelo de 1 cuarto</div><iframe class="video-frame" src="https://drive.google.com/file/d/19iyXYMDOoQ8PhhFf8mh3QgRq1MMoIDzq/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">THEA — Gym</div><div class="video-subtitle">Gimnasio</div><iframe class="video-frame" src="https://drive.google.com/file/d/1obftIJugGNpUGckzNRHv7hOemf6tYQK2/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">THEA — Parrillas</div><div class="video-subtitle">Área de parrillas</div><iframe class="video-frame" src="https://drive.google.com/file/d/1WGhO3YHo1nMSZbAN7NdmnbcQD4SO09dE/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">THEA — Piscina</div><div class="video-subtitle">Área de piscina</div><iframe class="video-frame" src="https://drive.google.com/file/d/1HvJS2z77yFCoX7uZLNrPAMqhJy0vEi4O/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
       </div>
 
       <div id="videos-southhill" class="subhead">
@@ -621,36 +626,12 @@
         <p>Videos del apartamento, townhome y amenidades.</p>
       </div>
       <div class="video-list">
-        <article class="video-card">
-          <div class="video-title">825 South Hill — 1 cuarto</div>
-          <div class="video-subtitle">Apartamento de 1 cuarto</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1FXEt9hngGoM__LYf4ZVwJ9U6Jl4Tulkm/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">825 South Hill — 2 cuartos</div>
-          <div class="video-subtitle">Townhome / unidad de 2 cuartos</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/18u37SHkZ2KuFTRfYnbE8p5I9YjgQVwYY/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">825 South Hill — Club house</div>
-          <div class="video-subtitle">Área social / club house</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1H_gxq5jKKz6HA-8avZdA4LgEmqzZyNUC/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">825 South Hill — Piscina</div>
-          <div class="video-subtitle">Área de piscina</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1kPkt1PHi4vB9QhUA5uoUax-W51m3qW25/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">825 South Hill — Gym</div>
-          <div class="video-subtitle">Gimnasio</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1whzW3GPotJpcqgQSOJW6-Vf_Fj4MOBZ9/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
-        <article class="video-card">
-          <div class="video-title">825 South Hill — Lobby</div>
-          <div class="video-subtitle">Entrada / lobby</div>
-          <iframe class="video-frame" src="https://drive.google.com/file/d/1ttLF4DUDzX3Oq6PTbip8AD4iEGILKRFv/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
-        </article>
+        <article class="video-card"><div class="video-title">825 South Hill — 1 cuarto</div><div class="video-subtitle">Apartamento de 1 cuarto</div><iframe class="video-frame" src="https://drive.google.com/file/d/1FXEt9hngGoM__LYf4ZVwJ9U6Jl4Tulkm/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">825 South Hill — 2 cuartos</div><div class="video-subtitle">Townhome / unidad de 2 cuartos</div><iframe class="video-frame" src="https://drive.google.com/file/d/18u37SHkZ2KuFTRfYnbE8p5I9YjgQVwYY/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">825 South Hill — Club house</div><div class="video-subtitle">Área social / club house</div><iframe class="video-frame" src="https://drive.google.com/file/d/1H_gxq5jKKz6HA-8avZdA4LgEmqzZyNUC/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">825 South Hill — Piscina</div><div class="video-subtitle">Área de piscina</div><iframe class="video-frame" src="https://drive.google.com/file/d/1kPkt1PHi4vB9QhUA5uoUax-W51m3qW25/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">825 South Hill — Gym</div><div class="video-subtitle">Gimnasio</div><iframe class="video-frame" src="https://drive.google.com/file/d/1whzW3GPotJpcqgQSOJW6-Vf_Fj4MOBZ9/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
+        <article class="video-card"><div class="video-title">825 South Hill — Lobby</div><div class="video-subtitle">Entrada / lobby</div><iframe class="video-frame" src="https://drive.google.com/file/d/1ttLF4DUDzX3Oq6PTbip8AD4iEGILKRFv/preview" allow="autoplay; fullscreen" allowfullscreen></iframe></article>
       </div>
     </section>
 
@@ -660,9 +641,9 @@
         <span class="tag">Antes de aplicar</span>
       </div>
       <div class="questions">
-        <div class="question"><strong>Stanley</strong><p>Confirmar si el total $3,860 es final, si el depósito será $500 o $750, y si el parking incluido es garantizado.</p></div>
-        <div class="question"><strong>THEA</strong><p>Confirmar el cálculo exacto del descuento: 12 semanas gratis aplicadas en meses 3, 6 y 9, total neto promedio, y costo real de servicios.</p></div>
-        <div class="question"><strong>825 South Hill</strong><p>Confirmar disponibilidad de #3210 y #521, tamaño real de cuartos, diferencia de vista, y total final con utilidades.</p></div>
+        <div class="question"><strong>Stanley</strong><p>Confirmar si el depósito será $500 o $750, si el total $3,860 es final y si el parking incluido queda garantizado por escrito.</p></div>
+        <div class="question"><strong>THEA</strong><p>Confirmar el cálculo exacto de las 12 semanas gratis, cómo se reflejan en los meses 3, 6 y 9, y el total neto promedio real.</p></div>
+        <div class="question"><strong>825 South Hill</strong><p>Confirmar disponibilidad de #3210 y #521, tamaño real de cuartos, vista, depósito final y total mensual exacto con utilidades.</p></div>
       </div>
     </section>
 
