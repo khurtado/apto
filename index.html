@@ -18,6 +18,8 @@
       --green-text: #14532d;
       --orange-soft: #ffedd5;
       --orange-text: #7c2d12;
+      --red-soft: #fee2e2;
+      --red-text: #7f1d1d;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
     }
 
@@ -35,7 +37,7 @@
     a { color: inherit; }
 
     .app {
-      max-width: 1080px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 14px;
     }
@@ -44,7 +46,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 28px;
-      padding: 26px 20px;
+      padding: 28px 20px;
       color: white;
       background:
         radial-gradient(circle at top right, rgba(255,255,255,.32), transparent 30%),
@@ -54,14 +56,14 @@
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(30px, 9vw, 58px);
+      font-size: clamp(31px, 9vw, 60px);
       line-height: .96;
       letter-spacing: -0.07em;
     }
 
     .hero p {
       margin: 12px 0 0;
-      max-width: 680px;
+      max-width: 760px;
       color: rgba(255,255,255,.86);
       font-size: 16px;
     }
@@ -90,7 +92,7 @@
 
     .summary {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin: 14px 0;
     }
@@ -111,7 +113,7 @@
     }
 
     .mini-card strong {
-      font-size: 22px;
+      font-size: 21px;
       letter-spacing: -0.04em;
     }
 
@@ -178,7 +180,7 @@
     table {
       border-collapse: collapse;
       width: 100%;
-      min-width: 820px;
+      min-width: 960px;
     }
 
     th, td {
@@ -279,6 +281,7 @@
     .note strong { display: block; margin-bottom: 4px; }
     .pros { background: var(--green-soft); color: var(--green-text); }
     .cons { background: var(--orange-soft); color: var(--orange-text); }
+    .warn { background: var(--red-soft); color: var(--red-text); }
 
     .btn {
       display: block;
@@ -327,22 +330,6 @@
       background: #0f172a;
     }
 
-    .drive-folder {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .drive-folder iframe {
-      display: block;
-      width: 100%;
-      height: 520px;
-      border: 0;
-      background: white;
-    }
-
     .questions { display: grid; gap: 10px; }
 
     .question {
@@ -363,13 +350,13 @@
       margin: 26px 0 10px;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 940px) {
       .app { padding: 12px; }
       .summary, .apt-grid, .video-list { grid-template-columns: 1fr; }
       .mini-card { padding: 14px; }
       .hero { border-radius: 24px; }
       .section-head { align-items: flex-end; }
-      .drive-folder iframe { height: 430px; }
+      .mini-card strong { font-size: 20px; }
     }
   </style>
 </head>
@@ -377,7 +364,7 @@
   <main class="app">
     <section class="hero">
       <h1>Apartamentos LA</h1>
-      <p>Comparación móvil de opciones entre SpaceX y Downtown LA, con precios, pros/contras, ranking y videos incrustados.</p>
+      <p>Comparación móvil actualizada con renta, descuentos, aplicación, depósitos, totales, pros/contras, ranking y videos incrustados.</p>
     </section>
 
     <nav class="quick-nav" aria-label="Navegación rápida">
@@ -386,20 +373,20 @@
       <a href="#videos-stanley">Stanley</a>
       <a href="#videos-thea">THEA</a>
       <a href="#videos-southhill">825 South Hill</a>
-      <a href="#drive">Drive</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
 
     <section class="summary">
       <div class="mini-card"><small>Mejor ranking</small><strong>Stanley</strong></div>
       <div class="mini-card"><small>Más cerca de SpaceX</small><strong>12–15 min</strong></div>
-      <div class="mini-card"><small>Mejor opción 2 cuartos</small><strong>825 South Hill</strong></div>
+      <div class="mini-card"><small>Más estilo hotel</small><strong>THEA</strong></div>
+      <div class="mini-card"><small>Mejor 2 cuartos</small><strong>825 South Hill</strong></div>
     </section>
 
     <section id="comparacion">
       <div class="section-head">
         <h2>Comparación rápida</h2>
-        <span class="tag">Mobile friendly</span>
+        <span class="tag">Totales estimados</span>
       </div>
       <div class="compare-wrap">
         <div class="compare-scroll">
@@ -409,42 +396,50 @@
                 <th>Ranking</th>
                 <th>Apartamento</th>
                 <th>Zona</th>
-                <th>Renta</th>
-                <th>Parking</th>
-                <th>Fees</th>
-                <th>Total estimado</th>
+                <th>Renta base</th>
+                <th>Parking / fees</th>
+                <th>Oferta</th>
+                <th>Total mensual</th>
+                <th>Total con descuento</th>
+                <th>Aplicación / depósito</th>
                 <th>SpaceX</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="rank">9</td>
-                <td><strong>Stanley on Market St</strong></td>
+                <td><strong>Stanley on Market St</strong><br>PH16</td>
                 <td>Entre SpaceX y Downtown</td>
-                <td>$3,650 — PH16</td>
-                <td>Incluido</td>
-                <td>Utilidades ~$150</td>
-                <td><strong>~$3,800</strong></td>
+                <td>$3,650</td>
+                <td>Parking incluido<br>Utilidades $150<br>Internet $60</td>
+                <td>Ninguna</td>
+                <td><strong>$3,860</strong></td>
+                <td><strong>$3,860</strong></td>
+                <td>$50 aplicación<br>$500 o $750 depósito<br>13 meses</td>
                 <td>12–15 min</td>
               </tr>
               <tr>
                 <td class="rank">8.5</td>
-                <td><strong>825 South Hill</strong></td>
+                <td><strong>825 South Hill</strong><br>#3210 / #521</td>
                 <td>Downtown LA</td>
-                <td>$3,272 1 cuarto / $3,514 townhome 2 cuartos</td>
-                <td>$250; visitante $25–$40</td>
-                <td>Utilidades $150–$200</td>
-                <td><strong>~$3,672–$3,964</strong></td>
+                <td>$3,272 junior 2 cuartos<br>$3,514 townhome 2 cuartos</td>
+                <td>Parking $250<br>Utilidades $150–$200<br>Visitantes $25–$40</td>
+                <td>$1,500 descuento aplicado al tercer mes</td>
+                <td><strong>$3,782</strong> 1 piso<br><strong>$4,024</strong> 2 pisos</td>
+                <td><strong>$3,667</strong> 1 piso<br><strong>$3,909</strong> 2 pisos</td>
+                <td>$50 por persona<br>$500 holding deposit<br>1 mes renta depósito</td>
                 <td>20–40 min</td>
               </tr>
               <tr>
                 <td class="rank">8</td>
-                <td><strong>THEA</strong></td>
+                <td><strong>THEA</strong><br>Apto #3801</td>
                 <td>Downtown LA</td>
-                <td>$4,016; posible ~$3,200 neto si aplican 3 meses gratis</td>
-                <td>$250</td>
-                <td>Utilidades $200–$250</td>
-                <td><strong>~$3,650–$4,516</strong></td>
+                <td>$4,005–$4,011</td>
+                <td>Parking $250<br>Servicios $250 aprox.<br>Internet $60<br>Invitados $20–$35/día</td>
+                <td>12 semanas gratis, aplicadas al mes 3, 6 y 9. Requiere 15 meses.</td>
+                <td><strong>$4,571</strong><br>Meses 3, 6 y 9: aprox. $500</td>
+                <td><strong>~$3,768</strong> promedio neto</td>
+                <td>$50 por persona<br>$500 holding deposit<br>Security: 1 mes</td>
                 <td>20–40 min</td>
               </tr>
             </tbody>
@@ -463,18 +458,24 @@
         <article class="apt-card">
           <div class="apt-top">
             <h3>Stanley on Market St</h3>
-            <div class="zone">Entre SpaceX y Downtown</div>
+            <div class="zone">Entre SpaceX y Downtown · PH16</div>
             <div class="score-line"><span>Ranking</span><span class="score">9</span></div>
           </div>
           <div class="apt-body">
             <ul class="facts">
-              <li><span>Renta</span><span>$3,650 PH16</span></li>
+              <li><span>Renta</span><span>$3,650</span></li>
               <li><span>Parking</span><span>Incluido</span></li>
-              <li><span>Fees</span><span>~$150</span></li>
-              <li><span>Total</span><span>~$3,800</span></li>
+              <li><span>Utilidades</span><span>$150</span></li>
+              <li><span>Internet</span><span>$60</span></li>
+              <li><span>Total</span><span>$3,860</span></li>
+              <li><span>Oferta</span><span>Ninguna</span></li>
+              <li><span>Aplicación</span><span>$50</span></li>
+              <li><span>Depósito</span><span>$500 o $750</span></li>
+              <li><span>Lease</span><span>13 meses</span></li>
+              <li><span>Contacto</span><span>Eric</span></li>
               <li><span>SpaceX</span><span>12–15 min</span></li>
             </ul>
-            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande.</div>
+            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande. Bien localizado entre SpaceX y Downtown.</div>
             <div class="note cons"><strong>Contras</strong>Menos amenidades que THEA y South Hill, aunque tiene bonitas.</div>
             <a class="btn" href="#videos-stanley">Ver videos de Stanley</a>
           </div>
@@ -483,19 +484,25 @@
         <article class="apt-card">
           <div class="apt-top">
             <h3>825 South Hill</h3>
-            <div class="zone">Downtown LA</div>
+            <div class="zone">Downtown LA · #3210 / #521</div>
             <div class="score-line"><span>Ranking</span><span class="score">8.5</span></div>
           </div>
           <div class="apt-body">
             <ul class="facts">
               <li><span>Renta</span><span>$3,272 / $3,514</span></li>
+              <li><span>Opciones</span><span>Junior 2 cuartos / Townhome 2 pisos</span></li>
               <li><span>Parking</span><span>$250</span></li>
-              <li><span>Fees</span><span>$150–$200</span></li>
-              <li><span>Total</span><span>~$3,672–$3,964</span></li>
+              <li><span>Utilidades</span><span>$150–$200</span></li>
+              <li><span>Total</span><span>$3,782 / $4,024</span></li>
+              <li><span>Con descuento</span><span>$3,667 / $3,909</span></li>
+              <li><span>Oferta</span><span>$1,500 al tercer mes</span></li>
+              <li><span>Aplicación</span><span>$50 por persona</span></li>
+              <li><span>Holding</span><span>$500</span></li>
+              <li><span>Depósito</span><span>1 mes renta</span></li>
               <li><span>SpaceX</span><span>20–40 min</span></li>
             </ul>
-            <div class="note pros"><strong>Pros</strong>1 cuarto precioso con bonita vista. Townhome de 2 cuartos con sala de lujo y cocina top.</div>
-            <div class="note cons"><strong>Contras</strong>No tiene balcón.</div>
+            <div class="note pros"><strong>Pros</strong>Junior 2 cuartos precioso con bonita vista. El de dos pisos tiene más espacio, sala de lujo y cocina top.</div>
+            <div class="note cons"><strong>Contras</strong>Cuartos pequeños. En el de dos pisos hay escaleras y no hay vista desde los cuartos.</div>
             <a class="btn" href="#videos-southhill">Ver videos de 825 South Hill</a>
           </div>
         </article>
@@ -503,19 +510,26 @@
         <article class="apt-card">
           <div class="apt-top">
             <h3>THEA</h3>
-            <div class="zone">Downtown LA</div>
+            <div class="zone">Downtown LA · Apto #3801</div>
             <div class="score-line"><span>Ranking</span><span class="score">8</span></div>
           </div>
           <div class="apt-body">
             <ul class="facts">
-              <li><span>Renta</span><span>$4,016 / posible ~$3,200 neto</span></li>
+              <li><span>Renta</span><span>$4,005–$4,011</span></li>
               <li><span>Parking</span><span>$250</span></li>
-              <li><span>Fees</span><span>$200–$250</span></li>
-              <li><span>Total</span><span>~$3,650–$4,516</span></li>
+              <li><span>Servicios</span><span>$250 aprox.</span></li>
+              <li><span>Internet</span><span>$60</span></li>
+              <li><span>Total normal</span><span>$4,571</span></li>
+              <li><span>Total neto</span><span>~$3,768</span></li>
+              <li><span>Oferta</span><span>12 semanas gratis</span></li>
+              <li><span>Aplicación</span><span>$50 por persona</span></li>
+              <li><span>Holding</span><span>$500</span></li>
+              <li><span>Security</span><span>1 mes</span></li>
+              <li><span>Lease</span><span>15 meses</span></li>
               <li><span>SpaceX</span><span>20–40 min</span></li>
             </ul>
-            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande, 1 baño y medio.</div>
-            <div class="note cons"><strong>Contras</strong>No tiene balcón. Confirmar si realmente aplican 3 meses gratis.</div>
+            <div class="note pros"><strong>Pros</strong>1 cuarto precioso y grande, 1 baño y medio. Amenidades bellas, parece hotel. Gabinetes blancos.</div>
+            <div class="note cons"><strong>Contras</strong>No tiene balcón. La oferta se aplica en meses específicos: 3, 6 y 9.</div>
             <a class="btn" href="#videos-thea">Ver videos de THEA</a>
           </div>
         </article>
@@ -534,13 +548,13 @@
       </div>
       <div class="video-list">
         <article class="video-card">
-          <div class="video-title">Stanley — 1 cuarto modelo</div>
-          <div class="video-subtitle">Modelo de 1 cuarto</div>
+          <div class="video-title">Stanley — 1 cuarto real</div>
+          <div class="video-subtitle">Unidad real de 1 cuarto</div>
           <iframe class="video-frame" src="https://drive.google.com/file/d/12I3pxqmcWK9SrhBk-2aYe4GCfCcpq4ul/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </article>
         <article class="video-card">
-          <div class="video-title">Stanley — 1 cuarto real</div>
-          <div class="video-subtitle">Unidad real de 1 cuarto</div>
+          <div class="video-title">Stanley — 1 cuarto real, baño</div>
+          <div class="video-subtitle">Baño de la unidad real</div>
           <iframe class="video-frame" src="https://drive.google.com/file/d/1dUSPouTGmN8Mw9qOx4nRkSZFCbnWSsKQ/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </article>
         <article class="video-card">
@@ -576,8 +590,8 @@
       </div>
       <div class="video-list">
         <article class="video-card">
-          <div class="video-title">THEA — 1 cuarto, posible gabinetes blancos</div>
-          <div class="video-subtitle">Otro color; confirmar si la unidad tiene gabinetes blancos.</div>
+          <div class="video-title">THEA — 1 cuarto, otro color</div>
+          <div class="video-subtitle">Puede que la unidad tenga gabinetes blancos.</div>
           <iframe class="video-frame" src="https://drive.google.com/file/d/1E3TsrKM_RZjSZDn35Uv0H35PZyGk-AWb/preview" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </article>
         <article class="video-card">
@@ -640,25 +654,15 @@
       </div>
     </section>
 
-    <section id="drive">
-      <div class="section-head">
-        <h2>Carpeta completa de Google Drive</h2>
-        <span class="tag">Fotos + videos</span>
-      </div>
-      <div class="drive-folder">
-        <iframe src="https://drive.google.com/embeddedfolderview?id=1-8UdDcJ_l_j0xv7p0t2eROue1oDC8JVT#grid"></iframe>
-      </div>
-    </section>
-
     <section id="preguntas">
       <div class="section-head">
         <h2>Preguntas pendientes</h2>
         <span class="tag">Antes de aplicar</span>
       </div>
       <div class="questions">
-        <div class="question"><strong>THEA</strong><p>Confirmar si los 3 meses gratis aplican al apartamento específico y cómo calculan la renta neta efectiva.</p></div>
-        <div class="question"><strong>825 South Hill</strong><p>Confirmar disponibilidad real del 1 cuarto y del townhome, parking de visitantes y total mensual con fees.</p></div>
-        <div class="question"><strong>Stanley</strong><p>Confirmar total mensual final, depósito, requisitos de crédito e ingreso, y si el parking incluido es garantizado.</p></div>
+        <div class="question"><strong>Stanley</strong><p>Confirmar si el total $3,860 es final, si el depósito será $500 o $750, y si el parking incluido es garantizado.</p></div>
+        <div class="question"><strong>THEA</strong><p>Confirmar el cálculo exacto del descuento: 12 semanas gratis aplicadas en meses 3, 6 y 9, total neto promedio, y costo real de servicios.</p></div>
+        <div class="question"><strong>825 South Hill</strong><p>Confirmar disponibilidad de #3210 y #521, tamaño real de cuartos, diferencia de vista, y total final con utilidades.</p></div>
       </div>
     </section>
 
